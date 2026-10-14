@@ -1,0 +1,13 @@
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:Tahoma,Arial,sans-serif;background:#06111c;color:#fff}.front{height:100vh;min-height:600px;position:relative;overflow:hidden}.hero{position:absolute;inset:0;background:url('assets/front/01.jpg') center/cover no-repeat;transform:scale(1.03)}.shade{position:absolute;inset:0;background:linear-gradient(90deg,#06111cee,#06111c55 55%,#06111c18),linear-gradient(0deg,#06111ce8,transparent 45%,#06111c55)}header{position:absolute;top:0;left:0;right:0;padding:22px 30px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #fff2}.brand{display:flex;gap:12px;align-items:center}.logo{width:46px;height:46px;border:1px solid #d8b65f99;border-radius:12px;display:grid;place-items:center;color:#d8b65f;font-weight:bold}.brand b{display:block;font-size:17px}.brand small{display:block;font-size:10px;opacity:.6;margin-top:4px}header>span{font-size:10px;letter-spacing:3px;color:#d8b65f}main{position:absolute;right:8%;top:50%;transform:translateY(-40%);max-width:650px}h1{font-size:clamp(45px,6vw,80px);line-height:1.05;margin:16px 0;text-shadow:0 5px 30px #000}em{font-style:normal;color:#d8b65f}p{font-size:17px;line-height:1.8;opacity:.78}a{display:inline-flex;gap:18px;align-items:center;margin-top:18px;padding:14px 22px;background:#d8b65f;color:#06111c;text-decoration:none;border-radius:11px;font-weight:bold}a strong{font-size:22px}footer{position:absolute;bottom:20px;left:25px;font-size:9px;opacity:.35}@media(max-width:700px){header{padding:14px 16px}header>span{display:none}.brand b{font-size:13px}.logo{width:39px;height:39px}main{right:8%;left:8%}h1{font-size:45px}p{font-size:14px}}
+header .brand{align-items:center}
+header .top-actions{direction:ltr}
+
+/* Header logo: fixed 40mm × 40mm at top-right */
+.front header .site-logo-link{position:absolute;top:14px;right:30px;z-index:10;width:40mm;height:40mm}
+.front header .brand{padding-right:calc(40mm + 18px)}
+.front header .top-actions{padding-left:0}
+@media(max-width:700px){.front header .site-logo-link{top:10px;right:16px}.front header .brand{padding-right:calc(40mm + 10px)}}
+
+/* English homepage hero alignment */
+html[dir="ltr"] .front main{left:8%;right:auto;text-align:left}
+html[dir="rtl"] .front main{text-align:right}

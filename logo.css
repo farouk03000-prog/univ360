@@ -1,0 +1,57 @@
+/* Shared university crest + supplied Arabic wordmark. */
+.site-logo-link{display:block;flex:none;text-decoration:none;pointer-events:none;cursor:default}
+.site-logo{width:40mm;height:40mm;object-fit:contain;display:block;filter:drop-shadow(0 6px 16px rgba(0,0,0,.28))}
+.wordmark-wrap{display:flex;align-items:center;flex:none;max-width:min(330px,30vw)}
+.site-wordmark{display:block;width:min(330px,30vw);height:auto;max-height:58px;object-fit:contain;filter:drop-shadow(0 5px 12px rgba(0,0,0,.25))}
+.viewer-wordmark{flex:none}
+.pole-label{display:block;font-size:10px;opacity:.62;margin-top:4px;white-space:nowrap}
+
+.lang-toggle{position:relative;isolation:isolate;width:112px;height:44px;padding:3px;direction:ltr;border:1px solid rgba(228,198,109,.45);border-radius:999px;background:rgba(5,14,24,.78);color:#fff;display:grid;grid-template-columns:1fr 1fr;align-items:center;cursor:pointer;overflow:hidden;backdrop-filter:blur(12px);box-shadow:0 8px 24px rgba(0,0,0,.22);transition:border-color .25s,transform .2s,box-shadow .25s}
+.lang-toggle::before{content:"";position:absolute;z-index:-1;top:3px;bottom:3px;left:3px;width:calc(50% - 3px);border-radius:999px;background:linear-gradient(135deg,#e4c66d,#cda94d);box-shadow:0 3px 12px rgba(228,198,109,.28);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.lang-toggle.is-en::before{transform:translateX(100%)}
+.lang-toggle span{position:relative;z-index:1;font-size:11px;font-weight:800;line-height:1;transition:color .25s,transform .25s}
+.lang-toggle .lang-ar{color:#07131f;letter-spacing:.2px}.lang-toggle .lang-en{color:rgba(255,255,255,.72);letter-spacing:.4px}
+.lang-toggle.is-en .lang-ar{color:rgba(255,255,255,.72)}.lang-toggle.is-en .lang-en{color:#07131f}
+.lang-toggle:hover{border-color:rgba(228,198,109,.8);transform:translateY(-1px);box-shadow:0 10px 28px rgba(0,0,0,.28)}
+.lang-toggle:active{transform:translateY(0) scale(.97)}.lang-toggle:focus-visible{outline:2px solid #e4c66d;outline-offset:3px}
+
+header{position:absolute !important;top:0;left:0;right:0;z-index:20;display:flex !important;align-items:flex-start !important;justify-content:space-between !important;direction:ltr !important;padding:14px 24px !important;min-height:78px;pointer-events:none}
+header .header-brand{position:absolute !important;top:14px !important;right:24px !important;left:auto !important;margin:0 !important;padding:0 !important;display:flex !important;flex-direction:row !important;align-items:center !important;gap:12px !important;direction:rtl !important;pointer-events:none}
+header .header-brand .site-logo-link{position:static !important;margin:0 !important;padding:0 !important;display:block !important;flex:none !important}
+header .header-brand .site-logo{width:40mm !important;height:40mm !important;max-width:40mm !important;max-height:40mm !important;object-fit:contain !important}
+header .header-brand .wordmark-wrap{max-width:min(330px,30vw)}
+header .top-actions{position:absolute !important;top:14px !important;left:24px !important;right:auto !important;margin:0 !important;padding:0 !important;display:flex !important;align-items:center !important;gap:10px !important;direction:ltr !important;pointer-events:auto}
+header .top-actions .lang-toggle{order:1}.front header .top-actions,.wrap>header .top-actions{left:24px !important;right:auto !important}
+.viewer-brand{margin:0 !important;text-align:right !important;direction:rtl}
+html[dir="ltr"] .viewer-brand{text-align:left !important}
+@media(max-width:700px){
+  header{padding:10px 14px !important;min-height:70px}
+  header .header-brand{top:10px !important;right:14px !important;gap:8px !important}
+  header .header-brand .site-logo{width:40mm !important;height:40mm !important;max-width:40mm !important;max-height:40mm !important}
+  .wordmark-wrap,.site-wordmark{max-width:205px;width:205px}
+  .site-wordmark{max-height:44px}
+  .pole-label{font-size:9px;margin-top:2px}
+  header .top-actions{top:10px !important;left:14px !important;gap:7px !important}
+  .lang-toggle{width:104px;height:42px}
+}
+
+/* v21: 30 mm university crest on every page + interactive 4-language selector */
+.site-logo{width:40mm!important;height:40mm!important;max-width:40mm!important;max-height:40mm!important;object-fit:contain!important}
+.front header .site-logo-link{top:14px!important;right:30px!important}
+.front header .brand{padding-right:calc(40mm + 18px)!important}
+/* Homepage: move the university logo/brand 25mm to the right */
+.front header .header-brand{right:calc(24px - 25mm) !important}
+.lang-toggle{width:118px!important;height:44px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;position:relative!important;z-index:31!important}
+.lang-globe{font-size:0;line-height:1;display:inline-grid;place-items:center;width:22px;height:16px;opacity:1;flex:none;border:0;border-radius:0;background:transparent;overflow:hidden}
+.lang-globe .current-language-flag{display:block;width:22px;height:16px;object-fit:cover;border-radius:2px;border:1px solid rgba(255,255,255,.45);box-shadow:0 2px 6px rgba(0,0,0,.28)}
+.lang-current{font-size:12px;font-weight:900;letter-spacing:.5px}
+.lang-chevron{font-size:16px;line-height:1;transform:translateY(-1px);transition:transform .2s ease}.lang-toggle[aria-expanded="true"] .lang-chevron{transform:rotate(180deg)}
+.lang-toggle::before{display:none!important}
+.language-menu{position:absolute;top:52px;left:0;z-index:40;min-width:168px;padding:6px;border:1px solid rgba(228,198,109,.38);border-radius:14px;background:rgba(5,14,24,.96);box-shadow:0 14px 34px rgba(0,0,0,.38);backdrop-filter:blur(14px);opacity:0;visibility:hidden;transform:translateY(-6px) scale(.98);transition:opacity .18s ease,transform .18s ease,visibility .18s ease}
+.language-menu.is-open{opacity:1;visibility:visible;transform:translateY(0) scale(1)}
+.language-option{width:100%;display:flex;align-items:center;gap:10px;padding:9px 10px;border:0;border-radius:9px;background:transparent;color:#fff;cursor:pointer;text-align:left;font:inherit}
+.language-option:hover,.language-option:focus-visible{background:rgba(228,198,109,.13);outline:none}.language-option .language-flag{width:22px;height:22px;flex:none;border-radius:6px;object-fit:cover;border:1px solid rgba(228,198,109,.35);box-shadow:0 2px 6px rgba(0,0,0,.25)}.language-option .language-name{font-size:12px;font-weight:700}
+html[dir="rtl"] .language-menu{left:0;right:auto}.top-actions{position:relative}
+@media(max-width:700px){.front header .site-logo-link{top:10px!important;right:16px!important}.front header .brand{padding-right:calc(40mm + 10px)!important}.language-menu{top:49px;min-width:156px}.lang-toggle{width:112px!important;height:42px!important}}
+/* Restore university-wordmark to its original position on the home page only. */
+.front header .header-brand .wordmark-wrap{transform:translateX(-25mm)!important}
