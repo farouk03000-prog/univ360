@@ -1,0 +1,82 @@
+/* Compact global music control — lives beside the language switch at top-left. */
+.music-control{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+  height:38px;
+  min-width:38px;
+  padding:3px;
+  border:1px solid rgba(228,198,109,.42);
+  border-radius:999px;
+  background:rgba(5,14,24,.78);
+  backdrop-filter:blur(12px);
+  box-shadow:0 8px 22px rgba(0,0,0,.22);
+  color:#e4c66d;
+  direction:ltr;
+  transition:width .28s ease, border-color .25s ease, box-shadow .25s ease, transform .2s ease;
+  overflow:hidden;
+  flex:none;
+}
+.music-control:hover,
+.music-control:focus-within{
+  width:112px;
+  border-color:rgba(228,198,109,.78);
+  box-shadow:0 10px 28px rgba(0,0,0,.28);
+  transform:translateY(-1px);
+}
+.music-play{
+  width:30px;
+  height:30px;
+  flex:0 0 30px;
+  border:0;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  padding:0;
+  background:rgba(228,198,109,.10);
+  color:#e4c66d;
+  cursor:pointer;
+  transition:background .2s ease, transform .2s ease;
+}
+.music-play:hover{background:rgba(228,198,109,.22);transform:scale(1.06)}
+.music-play:active{transform:scale(.93)}
+.music-play:focus-visible{outline:2px solid #e4c66d;outline-offset:2px}
+.music-icon{width:14px;height:14px;display:block}
+.music-note-wrap{
+  width:14px;
+  flex:0 0 14px;
+  display:grid;
+  place-items:center;
+  opacity:.72;
+  transition:opacity .2s ease;
+}
+.music-note{width:14px;height:14px;display:block}
+.music-volume{
+  width:52px;
+  height:4px;
+  margin:0 5px 0 1px;
+  accent-color:#e4c66d;
+  cursor:pointer;
+  opacity:0;
+  transform:translateX(8px);
+  transition:opacity .2s ease, transform .25s ease;
+}
+.music-control:hover .music-volume,
+.music-control:focus-within .music-volume{opacity:1;transform:translateX(0)}
+.music-control.is-playing .music-play{box-shadow:0 0 0 3px rgba(228,198,109,.07),0 0 15px rgba(228,198,109,.18)}
+.music-control.is-playing .music-note{animation:musicPulse 1.2s ease-in-out infinite}
+@keyframes musicPulse{0%,100%{transform:scale(.9)}50%{transform:scale(1.12)}}
+
+/* It remains beside the language button in every direction/language. */
+header .top-actions .music-control{order:0}
+header .top-actions .lang-toggle{order:1}
+header .top-actions a,
+header .top-actions>span{order:2}
+
+@media(max-width:700px){
+  .music-control{height:36px;min-width:36px}
+  .music-play{width:28px;height:28px;flex-basis:28px}
+  .music-control:hover,.music-control:focus-within{width:104px}
+  .music-volume{width:46px}
+}

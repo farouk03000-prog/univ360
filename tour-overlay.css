@@ -1,0 +1,28 @@
+/* tour-overlay.css — full-screen 3DVista overlay opened directly from a
+   poles.html card (currently used by the Economic Pole card). While the
+   overlay is open the page's own header (crest, wordmark, pole name, music,
+   language and the "Poles" button) stays visible on top of the tour. */
+
+.tour-overlay{position:fixed;inset:0;z-index:999;background:#06111c;display:flex}
+.tour-overlay[hidden]{display:none}
+
+.tour-overlay-frame{flex:1;width:100%;height:100%;border:0;display:block;background:#06111c}
+
+.tour-overlay-loading{position:absolute;inset:0;z-index:1;display:flex;align-items:center;justify-content:center;background:#06111c;transition:opacity .3s ease}
+.tour-overlay-loading.hidden{opacity:0;pointer-events:none}
+.tour-overlay-loading .loader{position:relative;width:46px;height:46px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0%,#e4c66d 100%);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 3px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 3px));animation:tourOverlaySpin .9s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes tourOverlaySpin{to{transform:rotate(360deg)}}
+
+/* Header-only elements used while a tour is open */
+.tour-back,
+.tour-pole-label{display:none !important}
+
+/* Keep the real header above the overlay, fixed to the viewport (the page may
+   be scrolled down when the card is tapped), without the page's dark scrim. */
+html.tour-open header{
+  position:fixed !important; top:0 !important; left:0 !important; right:0 !important;
+  z-index:1000 !important; background:none !important;
+}
+html.tour-open header .top-actions a.tour-back{display:inline-flex !important}
+html.tour-open header .tour-pole-label{display:block !important}
+html.tour-open header .top-actions a.back:not(.tour-back){display:none !important}
