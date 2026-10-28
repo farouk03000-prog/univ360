@@ -1,7 +1,4 @@
-/* mobile.css — توحيد عناصر الترويسة في سطر واحد على الهاتف فقط.
-   يشمل الشعار والـwordmark وأزرار اللغة والموسيقى والرئيسية/الأقطاب.
-   لا يغيّر تنسيق الحاسوب أو الشاشات الكبيرة. */
-
+/* mobile.css — توحيد عناصر الترويسة على الهاتف، مع شريط صوت منبثق أسفل زر الموسيقى. */
 :root {
   --m-logo: 30px;
   --m-word: clamp(54px, 20vw, 92px);
@@ -24,6 +21,7 @@
     gap: var(--m-gap) !important;
   }
 
+  /* الشعار والـWordmark في اليمين */
   html header .header-brand,
   html .front header .header-brand {
     position: static !important;
@@ -31,7 +29,7 @@
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important;
-    order: 2 !important; /* الشعار والـWordmark إلى اليمين */
+    order: 2 !important;
     flex: 0 1 auto !important;
     flex-wrap: nowrap !important;
     gap: 3px !important;
@@ -81,10 +79,9 @@
     object-fit: contain !important;
   }
 
-  html header .header-brand .pole-label {
-    display: none !important;
-  }
+  html header .header-brand .pole-label { display: none !important; }
 
+  /* الأزرار في اليسار */
   html header .top-actions,
   html .front header .top-actions,
   html .wrap > header .top-actions {
@@ -93,7 +90,7 @@
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important;
-    order: 1 !important; /* الأزرار إلى اليسار */
+    order: 1 !important;
     flex: 0 1 auto !important;
     flex-wrap: nowrap !important;
     gap: var(--m-gap) !important;
@@ -129,33 +126,26 @@
     height: 10px !important;
     flex: 0 0 13px !important;
   }
-
-  html header .top-actions .lang-current {
-    font-size: 9px !important;
-    line-height: 1 !important;
-  }
-
-  html header .top-actions .lang-chevron {
-    font-size: 10px !important;
-  }
-
+  html header .top-actions .lang-current { font-size: 9px !important; line-height: 1 !important; }
+  html header .top-actions .lang-chevron { font-size: 10px !important; }
   html header .top-actions .language-menu {
     top: calc(var(--m-btn-h) + 4px) !important;
     min-width: 120px !important;
     z-index: 9999 !important;
   }
 
-  /* زر الموسيقى: أيقونة صغيرة مع شريط صوت تفاعلي ظاهر دائماً */
+  /* زر الموسيقى: الشريط يفتح أسفل الزر ولا يوسّع صف الأزرار */
   html header .top-actions .music-control {
+    position: relative !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 4px !important;
-    width: auto !important;
-    min-width: 62px !important;
-    max-width: 88px !important;
+    gap: 0 !important;
+    width: var(--m-btn-h) !important;
+    min-width: var(--m-btn-h) !important;
+    max-width: var(--m-btn-h) !important;
     height: var(--m-btn-h) !important;
-    padding: 0 4px !important;
+    padding: 0 !important;
     box-sizing: border-box !important;
     overflow: visible !important;
   }
@@ -167,16 +157,39 @@
   }
 
   html header .top-actions .music-volume {
+    position: absolute !important;
+    top: calc(100% + 5px) !important;
+    left: 50% !important;
+    right: auto !important;
+    transform: translateX(-50%) translateY(-4px) !important;
+    z-index: 10000 !important;
     display: flex !important;
     align-items: center !important;
-    width: 34px !important;
-    max-width: 34px !important;
-    min-width: 0 !important;
-    height: 16px !important;
+    justify-content: center !important;
+    width: 82px !important;
+    max-width: 82px !important;
+    min-width: 82px !important;
+    height: 25px !important;
+    padding: 3px 7px !important;
     margin: 0 !important;
+    box-sizing: border-box !important;
+    border: 1px solid #ffffff35 !important;
+    border-radius: 8px !important;
+    background: #06111ce8 !important;
+    backdrop-filter: blur(8px) !important;
+    box-shadow: 0 3px 12px #0004 !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease !important;
+  }
+
+  html header .top-actions .music-control.volume-open .music-volume,
+  html header .top-actions .music-control:focus-within .music-volume {
     opacity: 1 !important;
     visibility: visible !important;
-    flex: 0 1 34px !important;
+    pointer-events: auto !important;
+    transform: translateX(-50%) translateY(0) !important;
   }
 
   html header .top-actions .music-volume input,
@@ -184,7 +197,7 @@
     display: block !important;
     width: 100% !important;
     min-width: 0 !important;
-    height: 12px !important;
+    height: 14px !important;
     margin: 0 !important;
     padding: 0 !important;
     opacity: 1 !important;
@@ -221,14 +234,7 @@
     --m-gap: 2px;
     --m-edge: 4px;
   }
-
-  html header .top-actions a {
-    padding: 0 3px !important;
-    font-size: 8px !important;
-  }
-
-  html header .top-actions .lang-toggle {
-    padding: 0 2px !important;
-    max-width: 50px !important;
-  }
+  html header .top-actions a { padding: 0 3px !important; font-size: 8px !important; }
+  html header .top-actions .lang-toggle { padding: 0 2px !important; max-width: 50px !important; }
+  html header .top-actions .music-volume { width: 76px !important; min-width: 76px !important; max-width: 76px !important; }
 }
