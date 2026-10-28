@@ -38,7 +38,7 @@ html[dir="ltr"] .viewer-brand{text-align:left !important}
 /* v21: 30 mm university crest on every page + interactive 4-language selector */
 .site-logo{width:40mm!important;height:40mm!important;max-width:40mm!important;max-height:40mm!important;object-fit:contain!important}
 .front header .site-logo-link{top:14px!important;right:30px!important}
-.front header .brand{padding-right:calc(40mm + 18px)!important}
+.front header .brand{padding-right:calc(40mm + -70px)!important}
 /* Homepage: move the university logo/brand 25mm to the right */
 .front header .header-brand{right:calc(24px - 25mm) !important}
 .lang-toggle{width:118px!important;height:44px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;position:relative!important;z-index:31!important}
@@ -54,4 +54,4 @@ html[dir="ltr"] .viewer-brand{text-align:left !important}
 html[dir="rtl"] .language-menu{left:0;right:auto}.top-actions{position:relative}
 @media(max-width:700px){.front header .site-logo-link{top:10px!important;right:16px!important}.front header .brand{padding-right:calc(40mm + 10px)!important}.language-menu{top:49px;min-width:156px}.lang-toggle{width:112px!important;height:42px!important}}
 /* Restore university-wordmark to its original position on the home page only. */
-.front header .header-brand .wordmark-wrap{transform:translateX(-25mm)!important}
+.front header .header-brand .wordmark-wrap{transform:translateX(-0mm)!important}
