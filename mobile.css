@@ -31,6 +31,7 @@
     display: flex !important;
     align-items: center !important;
     justify-content: flex-start !important;
+    order: 2 !important; /* الشعار والـWordmark إلى اليمين */
     flex: 0 1 auto !important;
     flex-wrap: nowrap !important;
     gap: 3px !important;
@@ -91,7 +92,8 @@
     inset: auto !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: flex-end !important;
+    justify-content: flex-start !important;
+    order: 1 !important; /* الأزرار إلى اليسار */
     flex: 0 1 auto !important;
     flex-wrap: nowrap !important;
     gap: var(--m-gap) !important;
@@ -143,26 +145,51 @@
     z-index: 9999 !important;
   }
 
+  /* زر الموسيقى: أيقونة صغيرة مع شريط صوت تفاعلي ظاهر دائماً */
   html header .top-actions .music-control {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
-    width: var(--m-btn-h) !important;
-    min-width: var(--m-btn-h) !important;
-    max-width: var(--m-btn-h) !important;
+    gap: 4px !important;
+    width: auto !important;
+    min-width: 62px !important;
+    max-width: 88px !important;
     height: var(--m-btn-h) !important;
-    padding: 0 !important;
+    padding: 0 4px !important;
     box-sizing: border-box !important;
+    overflow: visible !important;
   }
 
   html header .top-actions .music-play {
-    width: 19px !important;
-    height: 19px !important;
-    flex: 0 0 19px !important;
+    width: 17px !important;
+    height: 17px !important;
+    flex: 0 0 17px !important;
   }
 
   html header .top-actions .music-volume {
-    display: none !important;
+    display: flex !important;
+    align-items: center !important;
+    width: 34px !important;
+    max-width: 34px !important;
+    min-width: 0 !important;
+    height: 16px !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    flex: 0 1 34px !important;
+  }
+
+  html header .top-actions .music-volume input,
+  html header .top-actions .music-volume input[type="range"] {
+    display: block !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 12px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    cursor: pointer !important;
   }
 
   html header .top-actions a {
