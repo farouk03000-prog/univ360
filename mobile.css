@@ -1,240 +1,136 @@
-/* mobile.css — توحيد عناصر الترويسة على الهاتف، مع شريط صوت منبثق أسفل زر الموسيقى. */
-:root {
-  --m-logo: 30px;
-  --m-word: clamp(54px, 20vw, 92px);
-  --m-btn-h: 25px;
-  --m-gap: 3px;
-  --m-edge: 5px;
+/* mobile.css — ترويسة الهاتف في سطر واحد وبأحجام صغيرة:
+   الشعار، الـwordmark، زر الموسيقى، زر اللغة، وزر العودة (الرئيسية / الأقطاب).
+
+   لا يؤثر على الحاسوب ولا الشاشات الكبيرة إطلاقاً: كل القواعد داخل شروط
+   الهاتف فقط. لإلغاء هذا الملف بالكامل احذف سطر <link href="mobile.css">.
+
+   لتغيير الأحجام لاحقاً عدّل الأرقام في الكتلة التالية فقط.
+   (clamp(الأدنى، المتغيّر مع عرض الشاشة، الأقصى)) */
+
+:root{
+  --m-logo: clamp(28px, 9vw, 44px);     /* حجم الشعار */
+  --m-word: clamp(72px, 25vw, 140px);   /* عرض الـwordmark */
+  --m-btn-h: 28px;                      /* ارتفاع أزرار الموسيقى واللغة والعودة */
+  --m-gap: 4px;                         /* المسافة بين العناصر */
+  --m-edge: 6px;                        /* هامش الترويسة عن حواف الشاشة */
+  --m-row: max(var(--m-logo), var(--m-btn-h)); /* ارتفاع السطر (لا تغيّره) */
 }
 
-@media (max-width: 700px), (orientation: landscape) and (max-height: 500px) and (max-width: 950px) {
-  html header {
-    box-sizing: border-box !important;
-    width: 100% !important;
-    min-height: 0 !important;
-    height: auto !important;
-    padding: var(--m-edge) !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: space-between !important;
-    flex-wrap: nowrap !important;
-    gap: var(--m-gap) !important;
+/* ---------- هاتف (عمودي، أو أفقي بارتفاع قصير) ---------- */
+@media (max-width:700px), (orientation:landscape) and (max-height:500px) and (max-width:950px){
+
+  html header{
+    min-height:calc(var(--m-row) + var(--m-edge)*2) !important;
+    padding:var(--m-edge) !important;
   }
 
-  /* الشعار والـWordmark في اليمين */
+  /* ===== الشعار + الـwordmark (يمين الشاشة) ===== */
   html header .header-brand,
-  html .front header .header-brand {
-    position: static !important;
-    inset: auto !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    order: 2 !important;
-    flex: 0 1 auto !important;
-    flex-wrap: nowrap !important;
-    gap: 3px !important;
-    width: auto !important;
-    min-width: 0 !important;
-    max-width: 48% !important;
-    margin: 0 !important;
-    transform: none !important;
+  html .front header .header-brand{
+    display:grid !important;
+    grid-template-columns:auto auto !important;
+    grid-template-rows:auto !important;       /* صف واحد افتراضياً */
+    column-gap:var(--m-gap) !important;
+    row-gap:0 !important;
+    align-items:center !important;
+    justify-content:start !important;
+    top:calc(var(--m-edge) + (var(--m-row) - var(--m-logo))/2) !important;
+    right:var(--m-edge) !important;
+    left:auto !important;
+    max-width:none !important;
   }
-
   html .front header .brand,
-  html .wrap > header .brand {
-    padding: 0 !important;
-    margin: 0 !important;
-    min-width: 0 !important;
-  }
+  html .wrap>header .brand{ padding-right:0 !important; }
 
   html header .header-brand .site-logo,
   html header .header-brand .site-logo-link,
-  html .front header .site-logo-link {
-    display: block !important;
-    flex: 0 0 var(--m-logo) !important;
-    width: var(--m-logo) !important;
-    min-width: var(--m-logo) !important;
-    height: var(--m-logo) !important;
-    max-width: var(--m-logo) !important;
-    max-height: var(--m-logo) !important;
-    margin: 0 !important;
+  html .front header .site-logo-link{
+    width:var(--m-logo) !important; height:var(--m-logo) !important;
+    max-width:var(--m-logo) !important; max-height:var(--m-logo) !important;
   }
+  html header .header-brand .site-logo-link{ grid-column:1; grid-row:1; }
 
   html header .header-brand .wordmark-wrap,
-  html .front header .header-brand .wordmark-wrap {
-    flex: 0 1 var(--m-word) !important;
-    width: var(--m-word) !important;
-    min-width: 0 !important;
-    max-width: var(--m-word) !important;
-    margin: 0 !important;
-    transform: none !important;
+  html .front header .header-brand .wordmark-wrap{
+    grid-column:2; grid-row:1;
+    width:var(--m-word) !important; max-width:var(--m-word) !important;
+    transform:none !important;
+  }
+  html header .header-brand .site-wordmark{
+    width:100% !important; max-width:100% !important;
+    height:auto !important; max-height:none !important;
   }
 
-  html header .header-brand .site-wordmark {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    max-height: 25px !important;
-    object-fit: contain !important;
+  /* اسم القطب (صفحات الأقطاب وطبقة الجولة): سطر صغير تحت الـwordmark،
+     والشعار يمتد على السطرين فيبقى ارتفاع الترويسة بارتفاع الشعار */
+  html header .header-brand:not(.brand),
+  html.tour-open header .header-brand{ grid-template-rows:auto auto !important; }
+  html header .header-brand:not(.brand) .site-logo-link,
+  html.tour-open header .header-brand .site-logo-link{ grid-row:1 / span 2; }
+  html header .header-brand .pole-label{
+    grid-column:2; grid-row:2;
+    margin:0 !important; font-size:8px; line-height:1.2; text-align:right;
+    max-width:max(var(--m-word), 100px); overflow:hidden; text-overflow:ellipsis;
   }
 
-  html header .header-brand .pole-label { display: none !important; }
+  /* ===== الأزرار (يسار الشاشة) ===== */
+  /* قياس موحّد (الحشوة والحدود داخل الارتفاع) في كل الصفحات */
+  html header .top-actions .music-control,
+  html header .top-actions .lang-toggle,
+  html header .top-actions a{ box-sizing:border-box !important; }
 
-  /* الأزرار في اليسار */
   html header .top-actions,
   html .front header .top-actions,
-  html .wrap > header .top-actions {
-    position: static !important;
-    inset: auto !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    order: 1 !important;
-    flex: 0 1 auto !important;
-    flex-wrap: nowrap !important;
-    gap: var(--m-gap) !important;
-    width: auto !important;
-    min-width: 0 !important;
-    max-width: 52% !important;
-    margin: 0 !important;
-    transform: none !important;
+  html .wrap>header .top-actions{
+    top:calc(var(--m-edge) + (var(--m-row) - var(--m-btn-h))/2) !important;
+    left:var(--m-edge) !important;
+    gap:var(--m-gap) !important;
   }
 
-  html header .top-actions > * {
-    flex: 0 1 auto !important;
-    min-width: 0 !important;
-    margin: 0 !important;
+  /* زر اللغة */
+  html header .top-actions .lang-toggle{
+    width:auto !important; min-width:0 !important;
+    height:var(--m-btn-h) !important; padding:0 7px !important; gap:4px !important;
   }
-
-  html header .top-actions .lang-toggle {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 2px !important;
-    width: auto !important;
-    min-width: 0 !important;
-    max-width: 58px !important;
-    height: var(--m-btn-h) !important;
-    padding: 0 4px !important;
-    box-sizing: border-box !important;
-  }
-
   html header .top-actions .lang-globe,
-  html header .top-actions .lang-globe .current-language-flag {
-    width: 13px !important;
-    height: 10px !important;
-    flex: 0 0 13px !important;
+  html header .top-actions .lang-globe .current-language-flag{ width:14px; height:10px; }
+  html header .top-actions .lang-current{ font-size:9.5px; letter-spacing:.2px; }
+  html header .top-actions .lang-chevron{ font-size:11px; }
+  html header .top-actions .language-menu{
+    top:calc(var(--m-btn-h) + 4px); min-width:128px;
   }
-  html header .top-actions .lang-current { font-size: 9px !important; line-height: 1 !important; }
-  html header .top-actions .lang-chevron { font-size: 10px !important; }
-  html header .top-actions .language-menu {
-    top: calc(var(--m-btn-h) + 4px) !important;
-    min-width: 120px !important;
-    z-index: 9999 !important;
+  html header .top-actions .language-option{ font-size:12px; padding:7px 9px; }
+
+  /* زر الموسيقى: زر تشغيل صغير فقط. شريط الصوت ينبثق تحته عند اللمس
+     بدل أن يوسّع الصف (فيبقى كل شيء في سطر واحد). */
+  html header .top-actions .music-control{
+    position:relative; overflow:visible; gap:0 !important;
+    height:var(--m-btn-h); min-width:var(--m-btn-h); padding:2px;
+  }
+  html header .top-actions .music-play{
+    width:calc(var(--m-btn-h) - 6px); height:calc(var(--m-btn-h) - 6px);
+    flex:0 0 calc(var(--m-btn-h) - 6px);
+  }
+  html header .top-actions .music-icon{ width:12px; height:12px; }
+  html header .top-actions .music-note-wrap,
+  html header .top-actions .music-volume{ display:none; }
+  html header .top-actions .music-control:hover,
+  html header .top-actions .music-control:focus-within{ width:auto; transform:none; }
+  html header .top-actions .music-control:hover .music-volume,
+  html header .top-actions .music-control:focus-within .music-volume{
+    display:block; position:absolute; top:calc(100% + 6px); left:0; z-index:50;
+    width:84px; height:4px; margin:0; padding:10px 12px; box-sizing:content-box;
+    background:rgba(5,14,24,.94); border:1px solid rgba(228,198,109,.45);
+    border-radius:999px; opacity:1; transform:none;
   }
 
-  /* زر الموسيقى: الشريط يفتح أسفل الزر ولا يوسّع صف الأزرار */
-  html header .top-actions .music-control {
-    position: relative !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 0 !important;
-    width: var(--m-btn-h) !important;
-    min-width: var(--m-btn-h) !important;
-    max-width: var(--m-btn-h) !important;
-    height: var(--m-btn-h) !important;
-    padding: 0 !important;
-    box-sizing: border-box !important;
-    overflow: visible !important;
+  /* زر العودة (الرئيسية في صفحة الأقطاب، الأقطاب في صفحات الأقطاب والجولة) */
+  html header .top-actions a{
+    display:inline-flex; align-items:center; justify-content:center; gap:3px;
+    box-sizing:border-box; height:var(--m-btn-h); padding:0 8px;
+    color:#fff; text-decoration:none; font-size:10.5px; white-space:nowrap;
+    border:1px solid #ffffff30; border-radius:10px;
+    background:#06111c55; backdrop-filter:blur(8px);
   }
-
-  html header .top-actions .music-play {
-    width: 17px !important;
-    height: 17px !important;
-    flex: 0 0 17px !important;
-  }
-
-  html header .top-actions .music-volume {
-    position: absolute !important;
-    top: calc(100% + 5px) !important;
-    left: 50% !important;
-    right: auto !important;
-    transform: translateX(-50%) translateY(-4px) !important;
-    z-index: 10000 !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: 82px !important;
-    max-width: 82px !important;
-    min-width: 82px !important;
-    height: 25px !important;
-    padding: 3px 7px !important;
-    margin: 0 !important;
-    box-sizing: border-box !important;
-    border: 1px solid #ffffff35 !important;
-    border-radius: 8px !important;
-    background: #06111ce8 !important;
-    backdrop-filter: blur(8px) !important;
-    box-shadow: 0 3px 12px #0004 !important;
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    transition: opacity .2s ease, transform .2s ease, visibility .2s ease !important;
-  }
-
-  html header .top-actions .music-control.volume-open .music-volume,
-  html header .top-actions .music-control:focus-within .music-volume {
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-    transform: translateX(-50%) translateY(0) !important;
-  }
-
-  html header .top-actions .music-volume input,
-  html header .top-actions .music-volume input[type="range"] {
-    display: block !important;
-    width: 100% !important;
-    min-width: 0 !important;
-    height: 14px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    cursor: pointer !important;
-  }
-
-  html header .top-actions a {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex: 0 1 auto !important;
-    min-width: 0 !important;
-    height: var(--m-btn-h) !important;
-    padding: 0 5px !important;
-    box-sizing: border-box !important;
-    color: #fff !important;
-    text-decoration: none !important;
-    font-size: 9px !important;
-    line-height: 1 !important;
-    white-space: nowrap !important;
-    border: 1px solid #ffffff30 !important;
-    border-radius: 7px !important;
-    background: #06111c55 !important;
-    backdrop-filter: blur(6px) !important;
-  }
-}
-
-@media (max-width: 380px) {
-  :root {
-    --m-logo: 25px;
-    --m-word: 54px;
-    --m-btn-h: 23px;
-    --m-gap: 2px;
-    --m-edge: 4px;
-  }
-  html header .top-actions a { padding: 0 3px !important; font-size: 8px !important; }
-  html header .top-actions .lang-toggle { padding: 0 2px !important; max-width: 50px !important; }
-  html header .top-actions .music-volume { width: 76px !important; min-width: 76px !important; max-width: 76px !important; }
+  html header .top-actions a.back span{ margin-left:0; }
 }
