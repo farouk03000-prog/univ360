@@ -21,7 +21,7 @@ body{overflow-x:hidden}
 .caption p{margin:0;color:#ffee64;opacity:.72;font-size:14px;line-height:1.9}
 
 header{position:absolute;top:0;left:0;right:0;z-index:5;padding:24px max(30px,calc((100vw - 1180px)/2));display:flex;justify-content:space-between;align-items:center;background:linear-gradient(#030913cc,transparent)}
-.brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:#fff}
+.brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:#e4c66d}
 .logo{width:48px;height:48px;border:1px solid #e4c66d80;border-radius:14px;display:grid;place-items:center;color:#e4c66d;font-weight:800;background:#07152299;backdrop-filter:blur(8px)}
 .brand b{display:block;font-size:16px}
 .brand small{display:block;font-size:10px;opacity:.55;margin-top:2px}
