@@ -8,7 +8,7 @@
    (clamp(الأدنى، المتغيّر مع عرض الشاشة، الأقصى)) */
 
 :root{
-  --m-logo: clamp(58px, 9vw, 44px);     /* حجم الشعار */
+  --m-logo: clamp(28px, 9vw, 44px);     /* حجم الشعار */
   --m-word: clamp(72px, 25vw, 140px);   /* عرض الـwordmark */
   --m-btn-h: 28px;                      /* ارتفاع أزرار الموسيقى واللغة والعودة */
   --m-gap: 4px;                         /* المسافة بين العناصر */
@@ -116,8 +116,11 @@
   html header .top-actions .music-volume{ display:none; }
   html header .top-actions .music-control:hover,
   html header .top-actions .music-control:focus-within{ width:auto; transform:none; }
-  html header .top-actions .music-control:hover .music-volume,
-  html header .top-actions .music-control:focus-within .music-volume{
+  /* يُظهره mobile-volume.js بإضافة الصنف volume-open (ويخفيه بعد 3 ثوانٍ).
+     إن لم يُحمَّل السكربت (لا يوجد mv-js على <html>) يُظهره اللمس/التركيز كما كان. */
+  html header .top-actions .music-control.volume-open .music-volume,
+  html:not(.mv-js) header .top-actions .music-control:hover .music-volume,
+  html:not(.mv-js) header .top-actions .music-control:focus-within .music-volume{
     display:block; position:absolute; top:calc(100% + 6px); left:0; z-index:50;
     width:84px; height:4px; margin:0; padding:10px 12px; box-sizing:content-box;
     background:rgba(5,14,24,.94); border:1px solid rgba(228,198,109,.45);
